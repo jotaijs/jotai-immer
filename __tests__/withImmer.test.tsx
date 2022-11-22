@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import { atom, useAtom } from 'jotai'
+import { useAtom } from 'jotai/react'
+import { atom } from 'jotai/vanilla'
 import { withImmer } from '../src/index'
 
 it('withImmer derived atom with useAtom', async () => {
@@ -34,43 +35,6 @@ it('withImmer derived atom with useAtom', async () => {
 
   fireEvent.click(getByText('Decrease'))
   await findByText('count: 0')
-})
-
-it('withImmer derived atom with useAtom + scope', async () => {
-  const scope = Symbol()
-  const regularCountAtom = atom(0)
-
-  const Parent = () => {
-    const [regularCount] = useAtom(regularCountAtom, scope)
-    const [count, setCount] = useAtom(withImmer(regularCountAtom), scope)
-    return (
-      <>
-        <div>
-          count: {count} {regularCount}
-        </div>
-        <button onClick={() => setCount((draft) => (draft = draft + 1))}>
-          Increase
-        </button>
-        <button onClick={() => setCount((draft) => (draft = draft - 1))}>
-          Decrease
-        </button>
-      </>
-    )
-  }
-
-  const { findByText, getByText } = render(
-    <StrictMode>
-      <Parent />
-    </StrictMode>
-  )
-
-  await findByText('count: 0 0')
-
-  fireEvent.click(getByText('Increase'))
-  await findByText('count: 1 1')
-
-  fireEvent.click(getByText('Decrease'))
-  await findByText('count: 0 0')
 })
 
 it('withImmer derived atom with WritableAtom<Value, Value> signature', async () => {

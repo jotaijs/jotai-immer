@@ -1,6 +1,7 @@
 import React from 'react'
-import { atom, useAtom } from 'jotai'
 import { withImmer } from 'jotai-immer'
+import { useAtom } from 'jotai/react'
+import { atom } from 'jotai/vanilla'
 
 const primitiveAtom = atom(0)
 const countAtom = withImmer(primitiveAtom)
