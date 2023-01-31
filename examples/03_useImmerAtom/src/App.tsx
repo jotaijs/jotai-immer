@@ -1,6 +1,6 @@
 import React from 'react'
-import { useImmerAtom } from 'jotai/immer'
 import { atom } from 'jotai/vanilla'
+import { useImmerAtom } from 'jotai-immer'
 
 const primitiveAtom = atom(0)
 

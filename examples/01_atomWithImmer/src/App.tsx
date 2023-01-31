@@ -1,6 +1,6 @@
 import React from 'react'
-import { atomWithImmer } from 'jotai-immer'
 import { useAtom } from 'jotai/react'
+import { atomWithImmer } from 'jotai-immer'
 
 const counterAtom = atomWithImmer(0) // original immer atom
 
