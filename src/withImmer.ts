@@ -1,7 +1,7 @@
 import { produce } from 'immer'
 import type { Draft } from 'immer'
-import { atom } from 'jotai'
-import type { PrimitiveAtom, WritableAtom } from 'jotai'
+import { atom } from 'jotai/vanilla'
+import type { PrimitiveAtom, WritableAtom } from 'jotai/vanilla'
 
 const cache1 = new WeakMap()
 const memo1 = <T>(create: () => T, dep1: object): T =>
@@ -9,13 +9,15 @@ const memo1 = <T>(create: () => T, dep1: object): T =>
 
 export function withImmer<Value>(
   anAtom: PrimitiveAtom<Value>
-): WritableAtom<Value, Value | ((draft: Draft<Value>) => void)>
+): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], void>
 
-export function withImmer<Value>(
-  anAtom: WritableAtom<Value, Value>
-): WritableAtom<Value, Value | ((draft: Draft<Value>) => void)>
+export function withImmer<Value, Result>(
+  anAtom: WritableAtom<Value, [Value], Result>
+): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], Result>
 
-export function withImmer<Value>(anAtom: WritableAtom<Value, Value>) {
+export function withImmer<Value, Result>(
+  anAtom: WritableAtom<Value, [Value], Result>
+) {
   return memo1(() => {
     const derivedAtom = atom(
       (get) => get(anAtom),

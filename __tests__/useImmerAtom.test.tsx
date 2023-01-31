@@ -1,6 +1,6 @@
 import React, { StrictMode } from 'react'
 import { fireEvent, render } from '@testing-library/react'
-import { atom } from 'jotai'
+import { atom } from 'jotai/vanilla'
 import { atomWithImmer, useImmerAtom, withImmer } from '../src/index'
 
 it('useImmerAtom with regular atom', async () => {

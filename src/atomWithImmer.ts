@@ -1,11 +1,11 @@
 import { produce } from 'immer'
 import type { Draft } from 'immer'
-import { atom } from 'jotai'
-import type { WritableAtom } from 'jotai'
+import { atom } from 'jotai/vanilla'
+import type { WritableAtom } from 'jotai/vanilla'
 
 export function atomWithImmer<Value>(
   initialValue: Value
-): WritableAtom<Value, Value | ((draft: Draft<Value>) => void)> {
+): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], void> {
   const anAtom: any = atom(
     initialValue,
     (get, set, fn: Value | ((draft: Draft<Value>) => void)) =>
@@ -19,6 +19,5 @@ export function atomWithImmer<Value>(
         )
       )
   )
-
   return anAtom
 }
