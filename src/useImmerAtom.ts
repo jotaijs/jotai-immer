@@ -3,7 +3,7 @@ import { useAtom, useAtomValue } from 'jotai/react'
 import type { WritableAtom } from 'jotai/vanilla'
 import { useSetImmerAtom } from './useSetImmerAtom'
 
-type Options = Parameters<typeof useAtom>[1]
+type Options = Parameters<typeof useAtomValue>[1]
 
 export function useImmerAtom<Value, Result>(
   anAtom: WritableAtom<Value, [(draft: Draft<Value>) => void], Result>,
