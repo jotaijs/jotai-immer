@@ -1,29 +1,23 @@
-import { useCallback } from 'react'
-import { produce } from 'immer'
 import type { Draft } from 'immer'
-import { useAtom } from 'jotai/react'
+import { useAtom, useAtomValue } from 'jotai/react'
 import type { WritableAtom } from 'jotai/vanilla'
+import { useSetImmerAtom } from './useSetImmerAtom'
 
-type Scope = NonNullable<Parameters<typeof useAtom>[1]>
+type Options = Parameters<typeof useAtom>[1]
 
 export function useImmerAtom<Value, Result>(
   anAtom: WritableAtom<Value, [(draft: Draft<Value>) => void], Result>,
-  scope?: Scope
+  options?: Options
 ): [Value, (fn: (draft: Draft<Value>) => void) => Result]
 
 export function useImmerAtom<Value, Result>(
   anAtom: WritableAtom<Value, [(value: Value) => Value], Result>,
-  scope?: Scope
+  options?: Options
 ): [Value, (fn: (draft: Draft<Value>) => void) => Result]
 
 export function useImmerAtom<Value, Result>(
   anAtom: WritableAtom<Value, [(value: Value) => Value], Result>,
-  scope?: Scope
+  options?: Options
 ) {
-  const [state, setState] = useAtom(anAtom, scope)
-  const setStateWithImmer = useCallback(
-    (fn: (draft: Draft<Value>) => void) => setState(produce(fn)),
-    [setState]
-  )
-  return [state, setStateWithImmer]
+  return [useAtomValue(anAtom, options), useSetImmerAtom(anAtom, options)]
 }
