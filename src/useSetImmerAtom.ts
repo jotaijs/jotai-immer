@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import { produce } from 'immer'
 import type { Draft } from 'immer'
-import { useAtom, useSetAtom } from 'jotai/react'
+import { useSetAtom } from 'jotai/react'
 import type { WritableAtom } from 'jotai/vanilla'
 
 type Options = Parameters<typeof useSetAtom>[1]
