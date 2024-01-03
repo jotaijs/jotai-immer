@@ -1,5 +1,5 @@
 import type { Draft } from 'immer'
-import { useAtom, useAtomValue } from 'jotai/react'
+import { useAtomValue } from 'jotai/react'
 import type { WritableAtom } from 'jotai/vanilla'
 import { useSetImmerAtom } from './useSetImmerAtom'
 
