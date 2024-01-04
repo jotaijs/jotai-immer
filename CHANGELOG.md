@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [0.3.0] - 2024-01-04
 - Add useSetImmerAtom hook #4
 
 ## [0.2.0] - 2023-01-31
