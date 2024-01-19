@@ -6,18 +6,23 @@ import type { WritableAtom } from 'jotai/vanilla'
 export function atomWithImmer<Value>(
   initialValue: Value
 ): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], void> {
-  const anAtom: any = atom(
+  return atom(
     initialValue,
-    (get, set, fn: Value | ((draft: Draft<Value>) => void)) =>
+    function (
+      this: any,
+      get,
+      set,
+      fn: Value | ((draft: Draft<Value>) => void)
+    ) {
       set(
-        anAtom,
+        this,
         produce(
-          get(anAtom),
+          get(this),
           typeof fn === 'function'
             ? (fn as (draft: Draft<Value>) => void)
             : () => fn
         )
       )
+    }
   )
-  return anAtom
 }
