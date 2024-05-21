@@ -1,4 +1,4 @@
-export { atomWithImmer } from './atomWithImmer'
-export { withImmer } from './withImmer'
-export { useImmerAtom } from './useImmerAtom'
-export { useSetImmerAtom } from './useSetImmerAtom'
+export { atomWithImmer } from './atomWithImmer.js';
+export { withImmer } from './withImmer.js';
+export { useImmerAtom } from './useImmerAtom.js';
+export { useSetImmerAtom } from './useSetImmerAtom.js';
