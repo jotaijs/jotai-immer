@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Module-first setup #9
+
 ## [0.3.0] - 2024-01-04
 
 - Add useSetImmerAtom hook #4
