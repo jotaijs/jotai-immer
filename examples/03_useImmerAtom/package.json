@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "immer": "latest",
+    "jotai": "latest",
     "jotai-immer": "latest",
     "react": "latest",
     "react-dom": "latest"
