@@ -7,13 +7,23 @@ const cache1 = new WeakMap();
 const memo1 = <T>(create: () => T, dep1: object): T =>
   (cache1.has(dep1) ? cache1 : cache1.set(dep1, create())).get(dep1);
 
+export function withImmer<Value, Args extends unknown[], Result>(
+  anAtom: WritableAtom<Value, Args, Result>,
+): WritableAtom<
+  Value,
+  Args extends [Value | infer OtherValue]
+    ? [
+        | Value
+        | ((draft: Draft<Value>) => void)
+        | Exclude<OtherValue, (...args: never[]) => unknown>,
+      ]
+    : unknown[],
+  Result
+>;
+
 export function withImmer<Value>(
   anAtom: PrimitiveAtom<Value>,
 ): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], void>;
-
-export function withImmer<Value, Result>(
-  anAtom: WritableAtom<Value, [Value], Result>,
-): WritableAtom<Value, [Value | ((draft: Draft<Value>) => void)], Result>;
 
 export function withImmer<Value, Result>(
   anAtom: WritableAtom<Value, [Value], Result>,
