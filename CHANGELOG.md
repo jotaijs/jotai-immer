@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.1] - 2024-06-23
+
+### Changed
+
+- fix: withImmer doesn't work with resettable atom #11
+
 ### Changed
 
 ## [0.4.0] - 2024-05-21
