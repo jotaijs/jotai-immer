@@ -12,7 +12,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "jotai-immer": ["./src/index.js"]
+      "jotai-immer": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "examples"]
