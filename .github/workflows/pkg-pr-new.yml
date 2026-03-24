@@ -1,25 +1,22 @@
-name: CD
+name: pkg-pr-new
 
 on:
   push:
-    tags:
-      - v*
-
-permissions:
-  id-token: write
-  contents: read
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+  merge_group:
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
-          registry-url: 'https://registry.npmjs.org'
           cache: 'pnpm'
       - run: pnpm install
       - run: pnpm run compile
-      - run: npm publish
+      - run: pnpm dlx pkg-pr-new publish
