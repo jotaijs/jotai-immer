@@ -68,7 +68,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "happy-dom": "^20.8.7",
     "immer": "^11.1.4",
     "jotai": "^2.18.1",
