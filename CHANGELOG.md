@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-03-24
+
+### Changed
+
+- fix: correctly set atom to undefined #14
+
 ## [0.4.1] - 2024-06-23
 
 ### Changed
