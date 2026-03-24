@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import { produce, nothing } from 'immer';
 import type { Draft } from 'immer';
 import { atom } from 'jotai/vanilla';
 import type { PrimitiveAtom, WritableAtom } from 'jotai/vanilla';
@@ -38,7 +38,7 @@ export function withImmer<Value, Result>(
             get(anAtom),
             typeof fn === 'function'
               ? (fn as (draft: Draft<Value>) => void)
-              : () => fn,
+              : () => (fn === undefined ? nothing : fn),
           ),
         ),
     );

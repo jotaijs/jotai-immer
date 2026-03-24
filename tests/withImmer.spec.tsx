@@ -1,9 +1,9 @@
-import { afterEach, test } from 'vitest';
+import { afterEach, expect, test } from 'vitest';
 import { StrictMode } from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import { useAtom } from 'jotai/react';
 import { atomWithDefault, useResetAtom } from 'jotai/utils';
-import { atom } from 'jotai/vanilla';
+import { atom, createStore } from 'jotai/vanilla';
 import { withImmer } from 'jotai-immer';
 
 afterEach(cleanup);
@@ -107,4 +107,15 @@ test('withImmer derived atom with WritableAtom<Value, [Value | OtherValue]> sign
 
   fireEvent.click(getByText('Reset'));
   await findByText('count: 0');
+});
+
+test('withImmer setting value to undefined via store.set', () => {
+  const baseAtom = atom<string | undefined>('hello');
+  const immerAtom = withImmer(baseAtom);
+  const store = createStore();
+
+  expect(store.get(immerAtom)).toBe('hello');
+
+  store.set(immerAtom, undefined);
+  expect(store.get(immerAtom)).toBe(undefined);
 });
