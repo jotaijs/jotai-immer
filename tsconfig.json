@@ -10,7 +10,7 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "jsx": "react-jsx",
-    "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "jotai-immer": ["./src/index.ts"]
     }
