@@ -4,6 +4,7 @@
     "module": "commonjs",
     "verbatimModuleSyntax": false,
     "declaration": true,
+    "rootDir": "./src",
     "outDir": "./dist/cjs"
   },
   "include": ["src"]
