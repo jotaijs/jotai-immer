@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-03-26
+
+### Changed
+
+- fix: build (regression in #15) #17
+
 ## [0.4.2] - 2026-03-24
 
 ### Changed
